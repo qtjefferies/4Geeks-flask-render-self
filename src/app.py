@@ -20,7 +20,7 @@ class_dict = {
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-
+        # Handle form submission
         val1 = float(request.form["val1"])
         val2 = float(request.form["val2"])
         val3 = float(request.form["val3"])
@@ -30,8 +30,10 @@ def index():
         prediction = str(model.predict(data)[0])
         pred_class = class_dict[prediction]
     else:
+        # Handle initial GET request
         pred_class = None
 
+    # Render the template with the prediction result (or None if GET request)
     return render_template("index.html", prediction=pred_class)
 
 
