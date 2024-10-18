@@ -7,14 +7,14 @@ import os
 app = Flask(__name__, template_folder='../templates')
 
 # Get the absolute path to the model file
-model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../models/decision_tree_classifier_default_42.sav")
+model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../models/movies_xgb_model.sav")
 model = load(open(model_path, "rb"))
 
-class_dict = {
-    "0": "Iris setosa",
-    "1": "Iris versicolor",
-    "2": "Iris virginica"
-}
+# class_dict = {
+#     "0": "Iris setosa",
+#     "1": "Iris versicolor",
+#     "2": "Iris virginica"
+# }
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -24,17 +24,17 @@ def index():
         val1 = float(request.form["val1"])
         val2 = float(request.form["val2"])
         val3 = float(request.form["val3"])
-        val4 = float(request.form["val4"])
+#        val4 = float(request.form["val4"])
 
-        data = [[val1, val2, val3, val4]]
+        data = [[val1, val2, val3]]
         prediction = str(model.predict(data)[0])
-        pred_class = class_dict[prediction]
+        pred_value = prediction 
     else:
         # Handle initial GET request
-        pred_class = None
+        pred_value = None
 
     # Render the template with the prediction result (or None if GET request)
-    return render_template("index.html", prediction=pred_class)
+    return render_template("index.html", prediction=pred_value)
 
 
 if __name__ == "__main__":
