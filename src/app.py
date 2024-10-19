@@ -26,13 +26,13 @@ def index():
 
         data = [[val1, val2]]
         prediction = str(model.predict(data)[0])
-        pred_value = prediction 
+    #  pred_value = prediction 
     else:
         # Handle initial GET request
-        pred_value = None
+        prediction = None
 
     # Render the template with the prediction result (or None if GET request)
-    return render_template("index.html", prediction=pred_value)
+    return render_template("index.html", prediction=prediction)
 
 
 if __name__ == "__main__":
