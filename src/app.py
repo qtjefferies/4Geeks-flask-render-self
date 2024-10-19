@@ -7,14 +7,9 @@ import os
 app = Flask(__name__, template_folder='../templates')
 
 # Get the absolute path to the model file
-model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../models/movies_xgb_model.sav")
+model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../models/tree2_model.pkl")
 model = load(open(model_path, "rb"))
 
-# class_dict = {
-#     "0": "Iris setosa",
-#     "1": "Iris versicolor",
-#     "2": "Iris virginica"
-# }
 
 
 @app.route("/", methods=["GET", "POST"])
