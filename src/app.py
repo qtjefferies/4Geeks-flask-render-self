@@ -25,7 +25,7 @@ def index():
         val2 = float(request.form["val2"])
 
         data = [[val1, val2]]
-        prediction = str(model.predict(data)[0])
+        prediction = model.predict(data)[0]
     #  pred_value = prediction 
     else:
         # Handle initial GET request
