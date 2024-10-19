@@ -8,8 +8,8 @@ app = Flask(__name__, template_folder='../templates')
 
 # Get the absolute path to the model file
 model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../models/tree2_model.pkl")
-model = load(open(model_path, "rb"))
-
+with open(model_path, 'rb') as model_file:
+    model = load(model_file)
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -21,7 +21,7 @@ def index():
 
         data = [[val1, val2]]
         prediction = model.predict(data)[0]
-    #  pred_value = prediction 
+       #pred_value = prediction 
     else:
         # Handle initial GET request
         prediction = None
